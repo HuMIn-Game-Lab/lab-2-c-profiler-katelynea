@@ -69,7 +69,7 @@ int main(int argc, char** argv) {
     RunTest();
     profiler->calculateStats();
     profiler->printStats();
-    // profiler->writeStatsToFile("profilerStats.txt");
+    profiler->printStatsToCSV("Data/profilerStatsCSV.csv");
 
     delete profiler;
     profiler = nullptr;
