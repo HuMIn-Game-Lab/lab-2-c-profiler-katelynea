@@ -1,0 +1,3 @@
+Section Name, Count, Total Time, Average Time, Min Time, Max Time, Line Number, File Name, Function Name
+Loop 1, 5, 1.0208e-05, 2.0416e-06, 1.416e-06, 4.458e-06, 58, ./Code/main.cpp, Test4
+Loop 2, 25, 2.709e-06, 1.0836e-07, 8.3e-08, 1.25e-07, 55, ./Code/main.cpp, Test4

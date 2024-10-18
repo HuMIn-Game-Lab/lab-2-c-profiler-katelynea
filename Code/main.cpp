@@ -61,7 +61,7 @@ void Test4(){
     cout<< "END of Cycle"<<endl;
 }
 void RunTest(){
-    Test3();
+    // Test3();
     Test4();
 }
 int main(int argc, char** argv) {
