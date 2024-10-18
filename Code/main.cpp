@@ -11,8 +11,9 @@ void Test3(){
    
 constexpr int TRIG_TEST_NUM_ENTRIES = 100000;
 float randomYawDegreeTable[TRIG_TEST_NUM_ENTRIES]= {};
-PROFILER_ENTER("Random Angle Generation");
 for (int i =0; i < TRIG_TEST_NUM_ENTRIES; i++){
+    PROFILER_ENTER("Random Angle Generation");
+
     randomYawDegreeTable[i] = 360.f * float(rand())/float(RAND_MAX);
 }
 PROFILER_EXIT("Random Angle Generation");
@@ -61,15 +62,18 @@ void Test4(){
     cout<< "END of Cycle"<<endl;
 }
 void RunTest(){
-    // Test3();
-    Test4();
+    Test3();
+    // Test4();
 }
 int main(int argc, char** argv) {
     profiler = Profiler::getInstance();
     RunTest();
+    profiler->storeDetailedStatsbySectionCSV("Data/detailedStats.csv");
+
     profiler->calculateStats();
     profiler->printStats();
     profiler->printStatsToCSV("Data/profilerStatsCSV.csv");
+    profiler->printStatsToXML("Data/profilerStatsXML.xml");
 
     delete profiler;
     profiler = nullptr;
