@@ -130,6 +130,8 @@ void Profiler:: printStats(){
 void Profiler::printStatsToCSV(const char* fileName){
     ofstream file;
     file.open(fileName);
+    // make sur file is clear
+    file.clear();
     file<< "Section Name, Count, Total Time, Average Time, Min Time, Max Time, Line Number, File Name, Function Name"<<endl;
     for(auto const& pair : stats){
         ProfilerStats* sectionStats = pair.second;
@@ -148,6 +150,7 @@ void Profiler::printStatsToCSV(const char* fileName){
 void Profiler:: printStatsToXML(const char* fileName){
     ofstream file;
     file.open(fileName);
+    file.clear();
     file<< "<ProfilerStats>"<<endl;
     for(auto const& pair : stats){
         ProfilerStats* sectionStats = pair.second;

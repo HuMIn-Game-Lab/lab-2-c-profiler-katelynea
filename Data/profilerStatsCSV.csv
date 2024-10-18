@@ -1,4 +1,1 @@
 Section Name, Count, Total Time, Average Time, Min Time, Max Time, Line Number, File Name, Function Name
-Random Angle Generation, 1, 4.2e-08, 4.2e-08, 4.2e-08, 4.2e-08, 19, ./Code/main.cpp, Test3
-Compute Cos and Sin, 1, 0.0179816, 0.0179816, 0.0179816, 0.0179816, 37, ./Code/main.cpp, Test3
-Cos and Sin Compute, 100000, 0.00855931, 8.55931e-08, 4.1e-08, 6.958e-06, 32, ./Code/main.cpp, Test3
