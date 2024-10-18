@@ -1,6 +1,7 @@
 #include "profiler.hpp"
 #include "time.hpp"
 #include <iostream>
+#include <fstream>
 
 Profiler* Profiler::gProfiler = nullptr;
 
@@ -129,4 +130,20 @@ void Profiler:: printStats(){
     }
 }
 void Profiler::printStatsToCSV(const char* fileName){
+    ofstream file;
+    file.open("Data/profilerStats.csv");
+    file<< "Section Name, Count, Total Time, Average Time, Min Time, Max Time, Line Number, File Name, Function Name"<<endl;
+    for(auto const& pair : stats){
+        ProfilerStats* sectionStats = pair.second;
+        file<< sectionStats->sectionName<<", ";
+        file<< sectionStats->count<<", ";
+        file<< sectionStats->totalTime<<", ";
+        file<< sectionStats->averageTime<<", ";
+        file<< sectionStats->minTime<<", ";
+        file<< sectionStats->maxTime<<", ";
+        file<< sectionStats->lineNumber<<", ";
+        file<< sectionStats->fileName<<", ";
+        file<< sectionStats->functionName<<endl;
+    }
+    file.close();
 }
