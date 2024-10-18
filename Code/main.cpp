@@ -4,40 +4,11 @@
 #include <cstdio>
 
 using namespace std;
-constexpr float DEGREES_TO_RADIANS = 3.14159f/180.f;
-Profiler* profiler = nullptr;
-void Test3() {
-    constexpr int TRIG_TEST_NUM_ENTRIES = 100000;
-    float randomYawDegreeTable[TRIG_TEST_NUM_ENTRIES] = {};
-    srand(0); // Seed the random number generator for reproducibility
-
-    for (int i = 0; i < TRIG_TEST_NUM_ENTRIES; i++) {
-        PROFILER_ENTER("Random Angle Generation");
-        randomYawDegreeTable[i] = 360.f * float(rand()) / float(RAND_MAX);
-        PROFILER_EXIT("Random Angle Generation");
-    }
-
-    float biggestSoFar = 0.0f;
-    PROFILER_ENTER("Compute Cos and Sin");
-    for (int i = 0; i < TRIG_TEST_NUM_ENTRIES; i++) {
-        PROFILER_ENTER("Cos and Sin Compute");
-        float yawDegrees = randomYawDegreeTable[i];
-        float cosDegrees = cosf(yawDegrees * DEGREES_TO_RADIANS);
-        float sinDegrees = sinf(yawDegrees * DEGREES_TO_RADIANS);
-
-        if (cosDegrees + sinDegrees > biggestSoFar) {
-            biggestSoFar = cosDegrees + sinDegrees;
-        }
-        PROFILER_EXIT("Cos and Sin Compute");
-    }
-    PROFILER_EXIT("Compute Cos and Sin");
-    cout << "Biggest cos+sin= " << biggestSoFar << endl;
-}
 
 
 int main(int argc, char** argv) {
     Profiler* profiler = Profiler::getInstance();
-    Test3();
+    //Test3();
     // Test4();
     profiler->storeDetailedStatsbySectionCSV("Data/detailedStats.csv");
 
