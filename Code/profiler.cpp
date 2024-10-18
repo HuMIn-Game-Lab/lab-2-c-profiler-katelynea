@@ -42,11 +42,7 @@ Profiler::~Profiler(){
     }
 }
 
-void Profiler::EnterSection(char const* sectionName) {
-    double secondsAtStart = getTimeInSeconds();
-    TimeRecordStart start = TimeRecordStart(sectionName, secondsAtStart);
-    startTimes.push_back(start);
-}
+
 void Profiler::EnterSection(char const* sectionName) {
     double secondsAtStart = getTimeInSeconds();
     TimeRecordStart start = TimeRecordStart(sectionName, secondsAtStart);
