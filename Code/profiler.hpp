@@ -64,7 +64,7 @@ class Profiler{
         void EnterSection(char const* sectionName);
         void ExitSection(char const* sectionName);
         void ExitSection(char const* sectionName, int lineNumber, const char* fileName, const char* functionName);
-        void printDetailedStatsbySection();
+        void storeDetailedStatsbySectionCSV(const char* fileName);
         void calculateStats();
         void printStats();
         void printStatsToCSV(const char* fileName);

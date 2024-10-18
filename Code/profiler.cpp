@@ -49,14 +49,6 @@ void Profiler::EnterSection(char const* sectionName) {
     startTimes.push_back(start);
 }
 
-//memory management is slow, so we do pre allocation in Profiler()
-// void Profiler :: EnterSection(char const* sectionName){
-//     double secondsAtStart = GetCurrentTimeSeconds();
-// emplace_back is optmizied function
-//      startTimes.emplace_back(sectionName, secondsAtStart);
-
-// }
-
 void Profiler::ExitSection(char const* sectionName){
     double secondsAtStop = getTimeInSeconds();
     const TimeRecordStart& currentSection = startTimes.back();
@@ -83,6 +75,16 @@ void Profiler:: ReportSectionTime(char const* sectionName, double elapsedTime, i
 }
 ProfilerStats::ProfilerStats(char const* sectionName): sectionName(sectionName), count(0), totalTime(0), averageTime(0), minTime(0), maxTime(0), lineNumber(0), fileName("null"), functionName("null"){};
 ProfilerStats::~ProfilerStats(){};
+void Profiler:: storeDetailedStatsbySectionCSV(const char* fileName){
+    ofstream file;
+    file.open(fileName);
+    file<< "Section Name, Time"<<endl;
+    for(auto const& record : elapsedTimes){
+        file<< record.sectionName<<", ";
+        file<< record.secondsAtStop<<endl;
+    }
+    file.close();
+}
 
 void Profiler:: calculateStats(){
 cout << "Elapsed Times:" << endl;
@@ -141,5 +143,26 @@ void Profiler::printStatsToCSV(const char* fileName){
         file<< sectionStats->fileName<<", ";
         file<< sectionStats->functionName<<endl;
     }
+    file.close();
+}
+void Profiler:: printStatsToXML(const char* fileName){
+    ofstream file;
+    file.open(fileName);
+    file<< "<ProfilerStats>"<<endl;
+    for(auto const& pair : stats){
+        ProfilerStats* sectionStats = pair.second;
+        file<< "<Section>"<<endl;
+        file<< "<SectionName>"<< sectionStats->sectionName<< "</SectionName>"<<endl;
+        file<< "<Count>"<< sectionStats->count<< "</Count>"<<endl;
+        file<< "<TotalTime>"<< sectionStats->totalTime<< "</TotalTime>"<<endl;
+        file<< "<AverageTime>"<< sectionStats->averageTime<< "</AverageTime>"<<endl;
+        file<< "<MinTime>"<< sectionStats->minTime<< "</MinTime>"<<endl;
+        file<< "<MaxTime>"<< sectionStats->maxTime<< "</MaxTime>"<<endl;
+        file<< "<LineNumber>"<< sectionStats->lineNumber<< "</LineNumber>"<<endl;
+        file<< "<FileName>"<< sectionStats->fileName<< "</FileName>"<<endl;
+        file<< "<FunctionName>"<< sectionStats->functionName<< "</FunctionName>"<<endl;
+        file<< "</Section>"<<endl;
+    }
+    file<< "</ProfilerStats>"<<endl;
     file.close();
 }
