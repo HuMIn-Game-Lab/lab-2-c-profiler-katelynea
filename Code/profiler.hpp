@@ -64,9 +64,11 @@ class Profiler{
         void EnterSection(char const* sectionName);
         void ExitSection(char const* sectionName);
         void ExitSection(char const* sectionName, int lineNumber, const char* fileName, const char* functionName);
+        void printDetailedStatsbySection();
         void calculateStats();
         void printStats();
         void printStatsToCSV(const char* fileName);
+        void printStatsToXML(const char* fileName);
 
         static Profiler* gProfiler;
         static Profiler *getInstance();
