@@ -1,2 +1,35 @@
 <ProfilerStats>
+<Section>
+<SectionName>Random Angle Generation</SectionName>
+<Count>100000</Count>
+<TotalTime>0.013235</TotalTime>
+<AverageTime>1.3235e-07</AverageTime>
+<MinTime>4.1e-08</MinTime>
+<MaxTime>4.9542e-05</MaxTime>
+<LineNumber>17</LineNumber>
+<FileName>./Code/main.cpp</FileName>
+<FunctionName>Test3</FunctionName>
+</Section>
+<Section>
+<SectionName>Compute Cos and Sin</SectionName>
+<Count>1</Count>
+<TotalTime>0.0215824</TotalTime>
+<AverageTime>0.0215824</AverageTime>
+<MinTime>0.0215824</MinTime>
+<MaxTime>0.0215824</MaxTime>
+<LineNumber>33</LineNumber>
+<FileName>./Code/main.cpp</FileName>
+<FunctionName>Test3</FunctionName>
+</Section>
+<Section>
+<SectionName>Cos and Sin Compute</SectionName>
+<Count>100000</Count>
+<TotalTime>0.0105038</TotalTime>
+<AverageTime>1.05038e-07</AverageTime>
+<MinTime>4.1e-08</MinTime>
+<MaxTime>6.584e-06</MaxTime>
+<LineNumber>31</LineNumber>
+<FileName>./Code/main.cpp</FileName>
+<FunctionName>Test3</FunctionName>
+</Section>
 </ProfilerStats>
