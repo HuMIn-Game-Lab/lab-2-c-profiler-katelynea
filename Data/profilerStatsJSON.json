@@ -1,25 +1,91 @@
 {
 "ProfilerStats": [
 {
-"SectionName": "Loop 1", 
-"Count": 5, 
-"TotalTime": 1.8751e-05, 
-"AverageTime": 3.7502e-06, 
-"MinTime": 3.167e-06, 
-"MaxTime": 6.042e-06, 
-"LineNumber": 24, 
+"SectionName": "Creating Array", 
+"Count": 1, 
+"TotalTime": 1.5917e-05, 
+"AverageTime": 1.5917e-05, 
+"MinTime": 1.5917e-05, 
+"MaxTime": 1.5917e-05, 
+"LineNumber": 17, 
 "FileName": "./Code/main.cpp", 
-"FunctionName": "Test4" 
+"FunctionName": "SelectionSort1" 
 },
 {
-"SectionName": "Loop 2", 
-"Count": 25, 
-"TotalTime": 6.043e-06, 
-"AverageTime": 2.4172e-07, 
-"MinTime": 2.08e-07, 
-"MaxTime": 2.92e-07, 
-"LineNumber": 21, 
+"SectionName": "SelectionSort", 
+"Count": 1, 
+"TotalTime": 7.5e-07, 
+"AverageTime": 7.5e-07, 
+"MinTime": 7.5e-07, 
+"MaxTime": 7.5e-07, 
+"LineNumber": 33, 
 "FileName": "./Code/main.cpp", 
-"FunctionName": "Test4" 
+"FunctionName": "SelectionSort1" 
+},
+{
+"SectionName": "SelectionSortInnerLoop", 
+"Count": 1, 
+"TotalTime": 2.92e-07, 
+"AverageTime": 2.92e-07, 
+"MinTime": 2.92e-07, 
+"MaxTime": 2.92e-07, 
+"LineNumber": 32, 
+"FileName": "./Code/main.cpp", 
+"FunctionName": "SelectionSort1" 
+},
+{
+"SectionName": "SelectionSortComparison", 
+"Count": 499, 
+"TotalTime": 5.4917e-05, 
+"AverageTime": 1.10054e-07, 
+"MinTime": 8.3e-08, 
+"MaxTime": 2.09e-07, 
+"LineNumber": 29, 
+"FileName": "./Code/main.cpp", 
+"FunctionName": "SelectionSort1" 
+},
+{
+"SectionName": "Creating Array2", 
+"Count": 1, 
+"TotalTime": 2.09e-07, 
+"AverageTime": 2.09e-07, 
+"MinTime": 2.09e-07, 
+"MaxTime": 2.09e-07, 
+"LineNumber": 46, 
+"FileName": "./Code/main.cpp", 
+"FunctionName": "SelectionSort2" 
+},
+{
+"SectionName": "SelectionSort2", 
+"Count": 1, 
+"TotalTime": 2.5e-07, 
+"AverageTime": 2.5e-07, 
+"MinTime": 2.5e-07, 
+"MaxTime": 2.5e-07, 
+"LineNumber": 60, 
+"FileName": "./Code/main.cpp", 
+"FunctionName": "SelectionSort2" 
+},
+{
+"SectionName": "SelectionSortInnerLoop2", 
+"Count": 1, 
+"TotalTime": 6.25e-07, 
+"AverageTime": 6.25e-07, 
+"MinTime": 6.25e-07, 
+"MaxTime": 6.25e-07, 
+"LineNumber": 62, 
+"FileName": "./Code/main.cpp", 
+"FunctionName": "SelectionSort2" 
+},
+{
+"SectionName": "SelectionSortComparison2", 
+"Count": 499, 
+"TotalTime": 4.0198e-05, 
+"AverageTime": 8.05571e-08, 
+"MinTime": 4.1e-08, 
+"MaxTime": 2.5e-07, 
+"LineNumber": 57, 
+"FileName": "./Code/main.cpp", 
+"FunctionName": "SelectionSort2" 
 },
 ]}

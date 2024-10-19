@@ -1,34 +1,73 @@
 #include "profiler.hpp"
 #include<iostream>
 #include <cstdlib>
+#include <vector>
 #include <cstdio>
 
 using namespace std;
 Profiler* profiler = nullptr;
-void Test4(){
-    int numberVal =9;
-
-    for (int i =0; i< 5; i++)
-    {
-    PROFILER_ENTER("Loop 1");
-
-        numberVal++;
-        for (int j =0; j< 5; j++)
-        {
-            PROFILER_ENTER("Loop 2");
-
-            numberVal++;
-            PROFILER_EXIT("Loop 2");
-
-        }
-        PROFILER_EXIT("Loop 1");;
-
+void SelectionSort1(int size){
+    PROFILER_ENTER("Creating Array");
+    vector<int> arr(size);
+    // Fill the vector with random values
+    srand(static_cast<unsigned int>(time(0)));  // Seed random number generator
+    for (int i = 0; i < size; ++i) {
+        arr[i] = rand() % 100;  // Random values between 0 and 99
     }
-    cout<< "END of Cycle"<<endl;
+    PROFILER_EXIT("Creating Array");
+    int n = arr.size();
+    PROFILER_ENTER("SelectionSort");
+    for(int i = 0; i < n-1; i++){
+        PROFILER_ENTER("SelectionSortInnerLoop");
+        int minIndex = i;
+        for(int j = i+1; j < n; j++){
+            PROFILER_ENTER("SelectionSortComparison");
+            if(arr[j] < arr[minIndex]){
+                minIndex = j;
+            }
+        }
+        PROFILER_EXIT("SelectionSortComparison");
+        swap(arr[i], arr[minIndex]);
+    }
+    PROFILER_EXIT("SelectionSortInnerLoop");
+    PROFILER_EXIT("SelectionSort");
+    
+}
+void SelectionSort2(int size){
+    PROFILER_ENTER("Creating Array2");
+    vector<int> arr(size);
+    // Fill the vector with random values
+    srand(static_cast<unsigned int>(time(0)));  // Seed random number generator
+    for (int i = 0; i < size; ++i) {
+        arr[i] = rand() % 100;  // Random values between 0 and 99
+    }
+    int n = arr.size();
+    PROFILER_ENTER("SelectionSort2");
+    PROFILER_EXIT("Creating Array2");
+
+    for(int i = 0; i < n-1; i++){
+        PROFILER_ENTER("SelectionSortInnerLoop2");
+        int minIndex = i;
+        for(int j = i+1; j < n; j++){
+            PROFILER_ENTER("SelectionSortComparison2");
+            if(arr[j] < arr[minIndex]){
+                minIndex = j;
+            }
+        }
+        PROFILER_EXIT("SelectionSortComparison2");
+        swap(arr[i], arr[minIndex]);
+    }
+    PROFILER_EXIT("SelectionSort2");
+
+    PROFILER_EXIT("SelectionSortInnerLoop2");
+    
 }
 void RunTest(){
     //Test3();
-     Test4();
+    int arraySize(500);
+    SelectionSort1(arraySize);
+    SelectionSort2(arraySize);
+
 }
 
 int main(int argc, char** argv) {
@@ -40,94 +79,11 @@ int main(int argc, char** argv) {
     profiler->printStats();
     profiler->printStatsToCSV("Data/profilerStatsCSV.csv");
     system("python ./Code/profilerStatsVisual.py");
-
-    profiler->printStatsToXML("Data/profilerStatsXML.xml");
     profiler->printStatstoJSON("Data/profilerStatsJSON.json");
+    profiler->printStatsToXML("Data/profilerStatsXML.xml");
+
 
     delete profiler;
     //profiler = nullptr;
     return 0;
 }
-// constexpr float DEGREES_TO_RADIANS = 3.14159f/180.f;
-// Profiler* profiler = nullptr;
-
-// void Test3(){
-   
-// constexpr int TRIG_TEST_NUM_ENTRIES = 100000;
-// float randomYawDegreeTable[TRIG_TEST_NUM_ENTRIES]= {};
-// for (int i =0; i < TRIG_TEST_NUM_ENTRIES; i++){
-//     PROFILER_ENTER("Random Angle Generation");
-
-//     randomYawDegreeTable[i] = 360.f * float(rand())/float(RAND_MAX);
-// }
-// PROFILER_EXIT("Random Angle Generation");
-// //profiler->ExitSection("Random Angle Generation", __LINE__, __FILE__, __FUNCTION__);
-// // make above macro
-// // make a macro for the line number, file name, and function name
-// float biggestSoFar = 0.0f;
-
-// PROFILER_ENTER("Compute Cos and Sin");
-// for(int i =0; i < TRIG_TEST_NUM_ENTRIES; i++){
-//     PROFILER_ENTER("Cos and Sin Compute");
-//     float yawDegrees = randomYawDegreeTable[i];
-//     float cosDegrees = cosf(yawDegrees * DEGREES_TO_RADIANS);
-//     float sinDegrees = sinf(yawDegrees * DEGREES_TO_RADIANS);
-
-//     PROFILER_EXIT("Cos and Sin Compute");
-//     if(cosDegrees +sinDegrees > biggestSoFar){
-//         biggestSoFar = cosDegrees + sinDegrees;
-//     }
-// }
-// PROFILER_EXIT("Compute Cos and Sin");
-// //PROFILER_EXIT("Trig Speed Test");
-//     cout<< "Biggest cos+sin= "<< biggestSoFar<<endl;
-
-// }
-
-// void Test4(){
-//     int numberVal =9;
-
-//     for (int i =0; i< 5; i++)
-//     {
-//     PROFILER_ENTER("Loop 1");
-
-//         numberVal++;
-//         for (int j =0; j< 5; j++)
-//         {
-//             PROFILER_ENTER("Loop 2");
-
-//             numberVal++;
-//             PROFILER_EXIT("Loop 2");
-
-//         }
-//         PROFILER_EXIT("Loop 1");;
-
-//     }
-//     cout<< "END of Cycle"<<endl;
-// }
-// void RunTest(){
-//     Test3();
-//     // Test4();
-// }
-// int main(int argc, char** argv) {
-//     profiler = Profiler::getInstance();
-//     RunTest();
-//     profiler->storeDetailedStatsbySectionCSV("Data/detailedStats.csv");
-
-//     profiler->calculateStats();
-//     profiler->printStats();
-//     profiler->printStatsToCSV("Data/profilerStatsCSV.csv");
-//     profiler->printStatsToXML("Data/profilerStatsXML.xml");
-
-//     delete profiler;
-//     profiler = nullptr;
-//     return 0;
-// }
-
-// compile: 
-// 	clear 
-// 	clang++ -g -std=c++14 ./Code/*.cpp -o output
-// 	./output
-// 	@echo "Running Python visualization..."
-// 	@conda run -n intromlenv python ./Code/visualize_detailed_profiling.py
-// 	@conda run -n intromlenv python ./Code/visualize_profilerStats.py
