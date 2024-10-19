@@ -69,6 +69,7 @@ class Profiler{
         void printStats();
         void printStatsToCSV(const char* fileName);
         void printStatsToXML(const char* fileName);
+        void printStatstoJSON(const char* fileName);
 
         static Profiler* gProfiler;
         static Profiler *getInstance();

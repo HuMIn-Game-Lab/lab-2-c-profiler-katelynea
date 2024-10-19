@@ -131,7 +131,7 @@ void Profiler::printStatsToCSV(const char* fileName){
     ofstream file;
     file.open(fileName);
     // make sur file is clear
-    file.clear();
+    // file.clear();
     file<< "Section Name, Count, Total Time, Average Time, Min Time, Max Time, Line Number, File Name, Function Name"<<endl;
     for(auto const& pair : stats){
         ProfilerStats* sectionStats = pair.second;
@@ -150,7 +150,7 @@ void Profiler::printStatsToCSV(const char* fileName){
 void Profiler:: printStatsToXML(const char* fileName){
     ofstream file;
     file.open(fileName);
-    file.clear();
+    // file.clear();
     file<< "<ProfilerStats>"<<endl;
     for(auto const& pair : stats){
         ProfilerStats* sectionStats = pair.second;
@@ -167,5 +167,28 @@ void Profiler:: printStatsToXML(const char* fileName){
         file<< "</Section>"<<endl;
     }
     file<< "</ProfilerStats>"<<endl;
+    file.close();
+}
+void Profiler:: printStatstoJSON(const char* fileName){
+    ofstream file;
+    file.open(fileName);
+    // file.clear();
+    file<< "{"<<endl;
+    file<< "\"ProfilerStats\": ["<<endl;
+    for(auto const& pair : stats){
+        ProfilerStats* sectionStats = pair.second;
+        file<< "{"<<endl;
+        file<< "\"SectionName\": \""<< sectionStats->sectionName<< "\", "<<endl;
+        file<< "\"Count\": "<< sectionStats->count<< ", "<<endl;
+        file<< "\"TotalTime\": "<< sectionStats->totalTime<< ", "<<endl;
+        file<< "\"AverageTime\": "<< sectionStats->averageTime<< ", "<<endl;
+        file<< "\"MinTime\": "<< sectionStats->minTime<< ", "<<endl;
+        file<< "\"MaxTime\": "<< sectionStats->maxTime<< ", "<<endl;
+        file<< "\"LineNumber\": "<< sectionStats->lineNumber<< ", "<<endl;
+        file<< "\"FileName\": \""<< sectionStats->fileName<< "\", "<<endl;
+        file<< "\"FunctionName\": \""<< sectionStats->functionName<< "\" "<<endl;
+        file<< "},"<<endl;
+    }
+    file<< "]}"<<endl;
     file.close();
 }

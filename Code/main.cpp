@@ -4,21 +4,46 @@
 #include <cstdio>
 
 using namespace std;
+Profiler* profiler = nullptr;
+void Test4(){
+    int numberVal =9;
 
+    for (int i =0; i< 5; i++)
+    {
+    PROFILER_ENTER("Loop 1");
+
+        numberVal++;
+        for (int j =0; j< 5; j++)
+        {
+            PROFILER_ENTER("Loop 2");
+
+            numberVal++;
+            PROFILER_EXIT("Loop 2");
+
+        }
+        PROFILER_EXIT("Loop 1");;
+
+    }
+    cout<< "END of Cycle"<<endl;
+}
+void RunTest(){
+    //Test3();
+     Test4();
+}
 
 int main(int argc, char** argv) {
-    Profiler* profiler = Profiler::getInstance();
-    //Test3();
-    // Test4();
+    profiler = Profiler::getInstance();
+    RunTest();
     profiler->storeDetailedStatsbySectionCSV("Data/detailedStats.csv");
-
+    system("python ./Code/detailedStatsVisual.py");
     profiler->calculateStats();
     profiler->printStats();
     profiler->printStatsToCSV("Data/profilerStatsCSV.csv");
     profiler->printStatsToXML("Data/profilerStatsXML.xml");
+    profiler->printStatstoJSON("Data/profilerStatsJSON.json");
 
     delete profiler;
-    profiler = nullptr;
+    //profiler = nullptr;
     return 0;
 }
 // constexpr float DEGREES_TO_RADIANS = 3.14159f/180.f;

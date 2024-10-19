@@ -1,2 +1,24 @@
 <ProfilerStats>
+<Section>
+<SectionName>Loop 1</SectionName>
+<Count>5</Count>
+<TotalTime>2.1626e-05</TotalTime>
+<AverageTime>4.3252e-06</AverageTime>
+<MinTime>3.042e-06</MinTime>
+<MaxTime>9.167e-06</MaxTime>
+<LineNumber>24</LineNumber>
+<FileName>./Code/main.cpp</FileName>
+<FunctionName>Test4</FunctionName>
+</Section>
+<Section>
+<SectionName>Loop 2</SectionName>
+<Count>25</Count>
+<TotalTime>5.958e-06</TotalTime>
+<AverageTime>2.3832e-07</AverageTime>
+<MinTime>2.08e-07</MinTime>
+<MaxTime>2.92e-07</MaxTime>
+<LineNumber>21</LineNumber>
+<FileName>./Code/main.cpp</FileName>
+<FunctionName>Test4</FunctionName>
+</Section>
 </ProfilerStats>
