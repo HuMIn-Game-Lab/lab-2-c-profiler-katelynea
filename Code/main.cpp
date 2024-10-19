@@ -39,6 +39,8 @@ int main(int argc, char** argv) {
     profiler->calculateStats();
     profiler->printStats();
     profiler->printStatsToCSV("Data/profilerStatsCSV.csv");
+    system("python ./Code/profilerStatsVisual.py");
+
     profiler->printStatsToXML("Data/profilerStatsXML.xml");
     profiler->printStatstoJSON("Data/profilerStatsJSON.json");
 

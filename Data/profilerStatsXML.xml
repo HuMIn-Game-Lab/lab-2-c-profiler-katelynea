@@ -2,10 +2,10 @@
 <Section>
 <SectionName>Loop 1</SectionName>
 <Count>5</Count>
-<TotalTime>1.9749e-05</TotalTime>
-<AverageTime>3.9498e-06</AverageTime>
-<MinTime>3.125e-06</MinTime>
-<MaxTime>6.916e-06</MaxTime>
+<TotalTime>1.8751e-05</TotalTime>
+<AverageTime>3.7502e-06</AverageTime>
+<MinTime>3.167e-06</MinTime>
+<MaxTime>6.042e-06</MaxTime>
 <LineNumber>24</LineNumber>
 <FileName>./Code/main.cpp</FileName>
 <FunctionName>Test4</FunctionName>
@@ -13,10 +13,10 @@
 <Section>
 <SectionName>Loop 2</SectionName>
 <Count>25</Count>
-<TotalTime>5.833e-06</TotalTime>
-<AverageTime>2.3332e-07</AverageTime>
+<TotalTime>6.043e-06</TotalTime>
+<AverageTime>2.4172e-07</AverageTime>
 <MinTime>2.08e-07</MinTime>
-<MaxTime>2.91e-07</MaxTime>
+<MaxTime>2.92e-07</MaxTime>
 <LineNumber>21</LineNumber>
 <FileName>./Code/main.cpp</FileName>
 <FunctionName>Test4</FunctionName>
