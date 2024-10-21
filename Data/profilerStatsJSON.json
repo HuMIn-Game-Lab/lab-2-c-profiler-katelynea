@@ -1,91 +1,47 @@
 {
 "ProfilerStats": [
 {
-"SectionName": "Creating Array", 
+"SectionName": "Test3 Loop", 
 "Count": 1, 
-"TotalTime": 1.5917e-05, 
-"AverageTime": 1.5917e-05, 
-"MinTime": 1.5917e-05, 
-"MaxTime": 1.5917e-05, 
-"LineNumber": 17, 
+"TotalTime": 0.00133004, 
+"AverageTime": 0.00133004, 
+"MinTime": 0.00133004, 
+"MaxTime": 0.00133004, 
+"LineNumber": 15, 
 "FileName": "./Code/main.cpp", 
-"FunctionName": "SelectionSort1" 
+"FunctionName": "Test3" 
 },
 {
-"SectionName": "SelectionSort", 
+"SectionName": "Test3Inner", 
+"Count": 1000, 
+"TotalTime": 0.000249455, 
+"AverageTime": 2.49455e-07, 
+"MinTime": 2.08e-07, 
+"MaxTime": 3.33e-07, 
+"LineNumber": 13, 
+"FileName": "./Code/main.cpp", 
+"FunctionName": "Test3" 
+},
+{
+"SectionName": "Test2 Loop", 
 "Count": 1, 
-"TotalTime": 7.5e-07, 
-"AverageTime": 7.5e-07, 
-"MinTime": 7.5e-07, 
-"MaxTime": 7.5e-07, 
-"LineNumber": 33, 
+"TotalTime": 3.334e-06, 
+"AverageTime": 3.334e-06, 
+"MinTime": 3.334e-06, 
+"MaxTime": 3.334e-06, 
+"LineNumber": 24, 
 "FileName": "./Code/main.cpp", 
-"FunctionName": "SelectionSort1" 
+"FunctionName": "Test2" 
 },
 {
-"SectionName": "SelectionSortInnerLoop", 
-"Count": 1, 
-"TotalTime": 2.92e-07, 
-"AverageTime": 2.92e-07, 
-"MinTime": 2.92e-07, 
-"MaxTime": 2.92e-07, 
-"LineNumber": 32, 
+"SectionName": "Test2Inner", 
+"Count": 1000, 
+"TotalTime": 0.000819799, 
+"AverageTime": 8.19799e-07, 
+"MinTime": 7.09e-07, 
+"MaxTime": 7.834e-06, 
+"LineNumber": 25, 
 "FileName": "./Code/main.cpp", 
-"FunctionName": "SelectionSort1" 
-},
-{
-"SectionName": "SelectionSortComparison", 
-"Count": 499, 
-"TotalTime": 5.4917e-05, 
-"AverageTime": 1.10054e-07, 
-"MinTime": 8.3e-08, 
-"MaxTime": 2.09e-07, 
-"LineNumber": 29, 
-"FileName": "./Code/main.cpp", 
-"FunctionName": "SelectionSort1" 
-},
-{
-"SectionName": "Creating Array2", 
-"Count": 1, 
-"TotalTime": 2.09e-07, 
-"AverageTime": 2.09e-07, 
-"MinTime": 2.09e-07, 
-"MaxTime": 2.09e-07, 
-"LineNumber": 46, 
-"FileName": "./Code/main.cpp", 
-"FunctionName": "SelectionSort2" 
-},
-{
-"SectionName": "SelectionSort2", 
-"Count": 1, 
-"TotalTime": 2.5e-07, 
-"AverageTime": 2.5e-07, 
-"MinTime": 2.5e-07, 
-"MaxTime": 2.5e-07, 
-"LineNumber": 60, 
-"FileName": "./Code/main.cpp", 
-"FunctionName": "SelectionSort2" 
-},
-{
-"SectionName": "SelectionSortInnerLoop2", 
-"Count": 1, 
-"TotalTime": 6.25e-07, 
-"AverageTime": 6.25e-07, 
-"MinTime": 6.25e-07, 
-"MaxTime": 6.25e-07, 
-"LineNumber": 62, 
-"FileName": "./Code/main.cpp", 
-"FunctionName": "SelectionSort2" 
-},
-{
-"SectionName": "SelectionSortComparison2", 
-"Count": 499, 
-"TotalTime": 4.0198e-05, 
-"AverageTime": 8.05571e-08, 
-"MinTime": 4.1e-08, 
-"MaxTime": 2.5e-07, 
-"LineNumber": 57, 
-"FileName": "./Code/main.cpp", 
-"FunctionName": "SelectionSort2" 
+"FunctionName": "Test2" 
 },
 ]}

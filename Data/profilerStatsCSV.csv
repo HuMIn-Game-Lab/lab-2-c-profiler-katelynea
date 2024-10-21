@@ -1,9 +1,5 @@
 Section Name, Count, Total Time, Average Time, Min Time, Max Time, Line Number, File Name, Function Name
-Creating Array, 1, 1.5917e-05, 1.5917e-05, 1.5917e-05, 1.5917e-05, 17, ./Code/main.cpp, SelectionSort1
-SelectionSort, 1, 7.5e-07, 7.5e-07, 7.5e-07, 7.5e-07, 33, ./Code/main.cpp, SelectionSort1
-SelectionSortInnerLoop, 1, 2.92e-07, 2.92e-07, 2.92e-07, 2.92e-07, 32, ./Code/main.cpp, SelectionSort1
-SelectionSortComparison, 499, 5.4917e-05, 1.10054e-07, 8.3e-08, 2.09e-07, 29, ./Code/main.cpp, SelectionSort1
-Creating Array2, 1, 2.09e-07, 2.09e-07, 2.09e-07, 2.09e-07, 46, ./Code/main.cpp, SelectionSort2
-SelectionSort2, 1, 2.5e-07, 2.5e-07, 2.5e-07, 2.5e-07, 60, ./Code/main.cpp, SelectionSort2
-SelectionSortInnerLoop2, 1, 6.25e-07, 6.25e-07, 6.25e-07, 6.25e-07, 62, ./Code/main.cpp, SelectionSort2
-SelectionSortComparison2, 499, 4.0198e-05, 8.05571e-08, 4.1e-08, 2.5e-07, 57, ./Code/main.cpp, SelectionSort2
+Test3 Loop, 1, 0.00133004, 0.00133004, 0.00133004, 0.00133004, 15, ./Code/main.cpp, Test3
+Test3Inner, 1000, 0.000249455, 2.49455e-07, 2.08e-07, 3.33e-07, 13, ./Code/main.cpp, Test3
+Test2 Loop, 1, 3.334e-06, 3.334e-06, 3.334e-06, 3.334e-06, 24, ./Code/main.cpp, Test2
+Test2Inner, 1000, 0.000819799, 8.19799e-07, 7.09e-07, 7.834e-06, 25, ./Code/main.cpp, Test2
