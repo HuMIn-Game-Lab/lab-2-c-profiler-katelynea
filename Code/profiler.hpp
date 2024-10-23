@@ -7,6 +7,8 @@
 // use singleton design pattern
 #define PROFILER_ENTER(sectionName) Profiler::getInstance()->EnterSection(sectionName);
 #define PROFILER_EXIT(sectionName) Profiler::getInstance()->ExitSection(sectionName, __LINE__, __FILE__, __FUNCTION__);
+
+
 using namespace std;
 
 class ProfilerScopeObject{

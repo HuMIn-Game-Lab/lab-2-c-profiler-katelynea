@@ -1,5 +1,8 @@
 Section Name, Count, Total Time, Average Time, Min Time, Max Time, Line Number, File Name, Function Name
-Test3 Loop, 1, 0.00133004, 0.00133004, 0.00133004, 0.00133004, 15, ./Code/main.cpp, Test3
-Test3Inner, 1000, 0.000249455, 2.49455e-07, 2.08e-07, 3.33e-07, 13, ./Code/main.cpp, Test3
-Test2 Loop, 1, 3.334e-06, 3.334e-06, 3.334e-06, 3.334e-06, 24, ./Code/main.cpp, Test2
-Test2Inner, 1000, 0.000819799, 8.19799e-07, 7.09e-07, 7.834e-06, 25, ./Code/main.cpp, Test2
+bubbleSort1, 1, 0.000107375, 0.000107375, 0.000107375, 0.000107375, 67, ./Code/main.cpp, bubbleSort1
+bubbleSort1-inner, 18, 9.9336e-05, 5.51867e-06, 5.84e-07, 1.6583e-05, 65, ./Code/main.cpp, bubbleSort1
+bubbleSort1-inner-inner, 171, 1.9204e-05, 1.12304e-07, 8.3e-08, 1.67e-07, 62, ./Code/main.cpp, bubbleSort1
+bubbleSort2, 1, 1.0667e-05, 1.0667e-05, 1.0667e-05, 1.0667e-05, 90, ./Code/main.cpp, bubbleSort2
+bubbleSort2-inner-inner, 18, 2.084e-06, 1.15778e-07, 8.3e-08, 1.25e-07, 82, ./Code/main.cpp, bubbleSort2
+bubbleSort3, 1, 1.0292e-05, 1.0292e-05, 1.0292e-05, 1.0292e-05, 109, ./Code/main.cpp, bubbleSort3
+bubbleSort3-inner, 18, 2.209e-06, 1.22722e-07, 8.3e-08, 1.67e-07, 105, ./Code/main.cpp, bubbleSort3

@@ -25,7 +25,7 @@ ProfilerScopeObject::~ProfilerScopeObject(){
 }
 Profiler::Profiler(){
     gProfiler = this;
-    // startTimes.reserve(100);
+    startTimes.reserve(100);
     elapsedTimes.reserve(1000000);
 }
 
@@ -51,22 +51,6 @@ void Profiler::EnterSection(char const* sectionName) {
     
 }
 
-// void Profiler::ExitSection(char const* sectionName){
-//     double secondsAtStop = getTimeInSeconds();
-//     const TimeRecordStart& currentSection = startTimes.back();
-//     double elapsedTime = secondsAtStop - currentSection.secondsAtStart;
-//     elapsedTimes.emplace_back(sectionName, elapsedTime);
-//     startTimes.pop_back();
-    
-// }
-
-// void Profiler:: ExitSection(char const* sectionName, int lineNumber, const char* fileName, const char* functionName){
-//     double secondsAtStop = getTimeInSeconds();
-//     const TimeRecordStart& currentSection = startTimes.back();
-//     double elapsedTime = secondsAtStop - currentSection.secondsAtStart;
-//     ReportSectionTime(sectionName, elapsedTime, lineNumber, fileName, functionName);
-//     startTimes.pop_back();
-// }
 void Profiler::ExitSection(const char* sectionName) {
     double secondsAtStop = getTimeInSeconds();
     bool found = false;
@@ -75,6 +59,7 @@ void Profiler::ExitSection(const char* sectionName) {
     for (auto it = startTimes.rbegin(); it != startTimes.rend(); ++it) {
         if (std::string(it->sectionName) == sectionName) {
             double elapsedTime = secondsAtStop - it->secondsAtStart;
+            // emplace back the sectionName, elapsedTime, lineNumber, fileName, functionName
             elapsedTimes.emplace_back(sectionName, elapsedTime);
             startTimes.erase((it + 1).base()); // Erase the found element
             found = true;
@@ -122,6 +107,11 @@ void Profiler:: storeDetailedStatsbySectionCSV(const char* fileName){
 }
 
 void Profiler:: calculateStats(){
+// Clear existing stats first
+    for(auto& pair : stats) {
+        delete pair.second;
+    }
+    stats.clear();
 // cout << "Elapsed Times:" << endl;
     for (auto const& record : elapsedTimes){
         // calculate stats for each section
@@ -138,6 +128,7 @@ void Profiler:: calculateStats(){
         if(sectionStats->maxTime == 0 || record.secondsAtStop > sectionStats->maxTime){
             sectionStats->maxTime = record.secondsAtStop;
         }
+        // get lineNumber
         sectionStats->lineNumber = record.lineNumber;
         sectionStats->fileName = record.fileName;
         sectionStats->functionName = record.functionName;
@@ -145,6 +136,7 @@ void Profiler:: calculateStats(){
     }
 
 }
+
 void Profiler:: printStats(){
     cout<< "Profiler Stats"<<endl;
     cout<< "--------------------------------"<<endl;

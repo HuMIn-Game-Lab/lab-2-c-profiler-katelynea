@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profiler Stats Visualizer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <style>
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .chart-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .controls {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .controls button {
+            padding: 8px 16px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: white;
+        }
+        .controls button.active {
+            background-color: #007bff;
+            color: white;
+            border-color: #0056b3;
+        }
+        .filter-section {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-left: auto;
+        }
+        .chart-container {
+            height: 400px;
+            margin-top: 20px;
+        }
+        select {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        .section-title {
+            font-size: 1.2em;
+            margin: 20px 0;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Profiling Stats Visualizer</h1>
+        
+        <!-- Overview Chart Section -->
+        <div class="chart-section">
+            <div class="section-title">Overview - All Metrics by Section</div>
+            <div class="chart-container">
+                <canvas id="overviewChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Detailed Analysis Section -->
+        <div class="chart-section">
+            <div class="section-title">Detailed Analysis</div>
+            <div class="controls">
+                <button onclick="updateDetailChart('Total Time')" class="active">Total Time</button>
+                <button onclick="updateDetailChart('Average Time')">Average Time</button>
+                <button onclick="updateDetailChart('Max Time')">Max Time</button>
+                <button onclick="updateDetailChart('Min Time')">Min Time</button>
+                <button onclick="updateDetailChart('Count')">Count</button>
+                
+                <div class="filter-section">
+                    <label for="sectionFilter">Filter Section:</label>
+                    <select id="sectionFilter" onchange="filterData()">
+                        <option value="all">All Sections</option>
+                    </select>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="detailChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let profilerData = [];
+        let detailChart = null;
+        let overviewChart = null;
+        let currentMetric = 'Total Time';
+        let filteredData = [];
+
+        // Color palette for sections
+        const sectionColors = {
+            base: [
+                'rgba(255, 99, 132, 0.8)',    // Red
+                'rgba(54, 162, 235, 0.8)',    // Blue
+                'rgba(255, 206, 86, 0.8)',    // Yellow
+                'rgba(75, 192, 192, 0.8)',    // Teal
+                'rgba(153, 102, 255, 0.8)',   // Purple
+                'rgba(255, 159, 64, 0.8)',    // Orange
+                'rgba(46, 204, 113, 0.8)',    // Green
+                'rgba(142, 68, 173, 0.8)'     // Violet
+            ],
+            // Generate variations with different opacities
+            getVariations: function(baseIndex) {
+                const baseColor = this.base[baseIndex % this.base.length];
+                const colorBase = baseColor.substring(0, baseColor.lastIndexOf(','));
+                return [
+                    `${colorBase}, 0.9)`,
+                    `${colorBase}, 0.7)`,
+                    `${colorBase}, 0.5)`,
+                    `${colorBase}, 0.3)`
+                ];
+            }
+        };
+
+        function formatNumber(num) {
+            if (num === 0) return '0';
+            if (num < 0.000001) return num.toExponential(6);
+            if (num < 0.001) return num.toFixed(8);
+            if (num < 1) return num.toFixed(6);
+            return num.toFixed(2);
+        }
+
+        function parseCSV(csv) {
+            const lines = csv.trim().split('\n');
+            const headers = lines[0].split(',').map(h => h.trim());
+            
+            return lines.slice(1).map(line => {
+                const values = line.split(',').map(v => v.trim());
+                const row = {};
+                headers.forEach((header, index) => {
+                    row[header] = values[index];
+                    if (!isNaN(values[index])) {
+                        row[header] = parseFloat(values[index]);
+                    }
+                });
+                return row;
+            });
+        }
+
+        function createOverviewChart(data) {
+            if (overviewChart) {
+                overviewChart.destroy();
+            }
+
+            const sections = data.map(row => row['Section Name']);
+            const metrics = ['Total Time', 'Average Time', 'Max Time', 'Min Time'];
+            
+            // Create datasets grouped by section instead of metric
+            const datasets = sections.map((section, sectionIndex) => {
+                const sectionData = data.find(row => row['Section Name'] === section);
+                const colorVariations = sectionColors.getVariations(sectionIndex);
+                
+                return {
+                    label: section,
+                    data: metrics.map(metric => sectionData[metric]),
+                    backgroundColor: colorVariations[0],
+                    borderColor: sectionColors.base[sectionIndex % sectionColors.base.length],
+                    borderWidth: 1,
+                    category: 'section'
+                };
+            });
+
+            const ctx = document.getElementById('overviewChart').getContext('2d');
+            overviewChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: metrics,
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        },
+                        y: {
+                            type: 'logarithmic',
+                            title: {
+                                display: true,
+                                text: 'Time (logarithmic scale)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let value = context.raw;
+                                    return `${context.dataset.label}: ${formatNumber(value)}`;
+                                }
+                            }
+                        },
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                boxWidth: 15,
+                                padding: 15
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function populateSectionFilter(data) {
+            const select = document.getElementById('sectionFilter');
+            const sections = [...new Set(data.map(row => row['Section Name']))];
+            
+            select.innerHTML = '<option value="all">All Sections</option>';
+            sections.forEach(section => {
+                const option = document.createElement('option');
+                option.value = section;
+                option.textContent = section;
+                select.appendChild(option);
+            });
+        }
+
+        function filterData() {
+            const selectedSection = document.getElementById('sectionFilter').value;
+            filteredData = selectedSection === 'all' 
+                ? profilerData 
+                : profilerData.filter(row => row['Section Name'] === selectedSection);
+            
+            updateDetailChart(currentMetric);
+        }
+
+        function updateDetailChart(metric) {
+            currentMetric = metric;
+            
+            document.querySelectorAll('.controls button').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent === metric) {
+                    btn.classList.add('active');
+                }
+            });
+
+            const labels = filteredData.map(row => row['Section Name']);
+            const data = filteredData.map(row => row[metric]);
+
+            if (detailChart) {
+                detailChart.destroy();
+            }
+
+            const ctx = document.getElementById('detailChart').getContext('2d');
+            detailChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: metric,
+                        data: data,
+                        backgroundColor: labels.map((_, index) => sectionColors.base[index % sectionColors.base.length]),
+                        borderColor: labels.map((_, index) => sectionColors.base[index % sectionColors.base.length].replace('0.8', '1')),
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: metric
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let value = context.raw;
+                                    return `${context.dataset.label}: ${formatNumber(value)}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        fetch('../Data/profilerStatsCSV.csv')
+            .then(response => response.text())
+            .then(csv => {
+                profilerData = parseCSV(csv);
+                filteredData = profilerData;
+                populateSectionFilter(profilerData);
+                createOverviewChart(profilerData);
+                updateDetailChart('Total Time');
+            })
+            .catch(error => {
+                console.error('Error loading CSV:', error);
+                alert('Error loading CSV file. Please make sure the file exists and is accessible.');
+            });
+    </script>
+</body>
+</html>

@@ -1,47 +1,80 @@
 {
 "ProfilerStats": [
 {
-"SectionName": "Test3 Loop", 
+"SectionName": "bubbleSort1", 
 "Count": 1, 
-"TotalTime": 0.00133004, 
-"AverageTime": 0.00133004, 
-"MinTime": 0.00133004, 
-"MaxTime": 0.00133004, 
-"LineNumber": 15, 
+"TotalTime": 0.000107375, 
+"AverageTime": 0.000107375, 
+"MinTime": 0.000107375, 
+"MaxTime": 0.000107375, 
+"LineNumber": 67, 
 "FileName": "./Code/main.cpp", 
-"FunctionName": "Test3" 
+"FunctionName": "bubbleSort1" 
 },
 {
-"SectionName": "Test3Inner", 
-"Count": 1000, 
-"TotalTime": 0.000249455, 
-"AverageTime": 2.49455e-07, 
-"MinTime": 2.08e-07, 
-"MaxTime": 3.33e-07, 
-"LineNumber": 13, 
+"SectionName": "bubbleSort1-inner", 
+"Count": 18, 
+"TotalTime": 9.9336e-05, 
+"AverageTime": 5.51867e-06, 
+"MinTime": 5.84e-07, 
+"MaxTime": 1.6583e-05, 
+"LineNumber": 65, 
 "FileName": "./Code/main.cpp", 
-"FunctionName": "Test3" 
+"FunctionName": "bubbleSort1" 
 },
 {
-"SectionName": "Test2 Loop", 
+"SectionName": "bubbleSort1-inner-inner", 
+"Count": 171, 
+"TotalTime": 1.9204e-05, 
+"AverageTime": 1.12304e-07, 
+"MinTime": 8.3e-08, 
+"MaxTime": 1.67e-07, 
+"LineNumber": 62, 
+"FileName": "./Code/main.cpp", 
+"FunctionName": "bubbleSort1" 
+},
+{
+"SectionName": "bubbleSort2", 
 "Count": 1, 
-"TotalTime": 3.334e-06, 
-"AverageTime": 3.334e-06, 
-"MinTime": 3.334e-06, 
-"MaxTime": 3.334e-06, 
-"LineNumber": 24, 
+"TotalTime": 1.0667e-05, 
+"AverageTime": 1.0667e-05, 
+"MinTime": 1.0667e-05, 
+"MaxTime": 1.0667e-05, 
+"LineNumber": 90, 
 "FileName": "./Code/main.cpp", 
-"FunctionName": "Test2" 
+"FunctionName": "bubbleSort2" 
 },
 {
-"SectionName": "Test2Inner", 
-"Count": 1000, 
-"TotalTime": 0.000819799, 
-"AverageTime": 8.19799e-07, 
-"MinTime": 7.09e-07, 
-"MaxTime": 7.834e-06, 
-"LineNumber": 25, 
+"SectionName": "bubbleSort2-inner-inner", 
+"Count": 18, 
+"TotalTime": 2.084e-06, 
+"AverageTime": 1.15778e-07, 
+"MinTime": 8.3e-08, 
+"MaxTime": 1.25e-07, 
+"LineNumber": 82, 
 "FileName": "./Code/main.cpp", 
-"FunctionName": "Test2" 
+"FunctionName": "bubbleSort2" 
+},
+{
+"SectionName": "bubbleSort3", 
+"Count": 1, 
+"TotalTime": 1.0292e-05, 
+"AverageTime": 1.0292e-05, 
+"MinTime": 1.0292e-05, 
+"MaxTime": 1.0292e-05, 
+"LineNumber": 109, 
+"FileName": "./Code/main.cpp", 
+"FunctionName": "bubbleSort3" 
+},
+{
+"SectionName": "bubbleSort3-inner", 
+"Count": 18, 
+"TotalTime": 2.209e-06, 
+"AverageTime": 1.22722e-07, 
+"MinTime": 8.3e-08, 
+"MaxTime": 1.67e-07, 
+"LineNumber": 105, 
+"FileName": "./Code/main.cpp", 
+"FunctionName": "bubbleSort3" 
 },
 ]}
