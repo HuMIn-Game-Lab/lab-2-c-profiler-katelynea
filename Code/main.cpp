@@ -65,6 +65,26 @@ void bubbleSort1(vector<int>& arr) {
     }
     PROFILER_EXIT("bubbleSort1");
 }
+// ecxact same example as above just with interleaving!
+void bubbleSort1Interleaving(vector<int>& arr) {
+    PROFILER_ENTER("bubbleSortInterleaving");
+
+    int n = arr.size();  // Ensure size is correctly determined
+    for (int i = 0; i < n - 1; i++) {
+        PROFILER_ENTER("bubbleSortInterleaving-inner");
+        for (int j = 0; j < n - i - 1; j++) {
+            PROFILER_ENTER("bubbleSortInterleaving-inner-inner");
+            if (arr[j] > arr[j + 1]) {
+                std::swap(arr[j], arr[j + 1]);
+            }
+            PROFILER_EXIT("bubbleSortInterleaving-inner");
+
+            PROFILER_EXIT("bubbleSortInterleaving-inner-inner");
+        }
+
+    }
+    PROFILER_EXIT("bubbleSortInterleaving");
+}
 void bubbleSort2(vector<int>& arr) {
     PROFILER_ENTER("bubbleSort2");
     int n = arr.size();
@@ -112,6 +132,7 @@ void RunTest(){
     vector<int> vectarr = {112, 64, 34, 25, 109,103, 12,105, 22, 11, 90, 1, 92, 75, 88, 99, 101, 100, 102};
 
     bubbleSort1(vectarr);
+    // bubbleSort1Interleaving(vectarr);
     bubbleSort2(vectarr);
     bubbleSort3(vectarr);
 
@@ -123,17 +144,19 @@ int main(int argc, char** argv) {
     RunTest();
     profiler->storeDetailedStatsbySectionCSV("Data/detailedStats.csv");
     profiler->calculateStats();
-    profiler->printStats();
-    profiler->printStatsToCSV("Data/profilerStatsCSV.csv");
 
+    // printing of stats to console
+    profiler->printStats();
+    // printing of stats to csv
+    profiler->printStatsToCSV("Data/profilerStatsCSV.csv");
+    // printing of stats to json
      profiler->printStatstoJSON("Data/profilerStatsJSON.json");
+
     // Open the visualizer in the default browser
-     cout << "Starting local server..." << endl;
+    cout << "Starting local server..." << endl;
     startServer();
-    
     cout << "Opening visualizers in browser..." << endl;
     openBrowsers();
-    
     cout << "Visualizers are running at:" << endl;
     cout << "1. http://localhost:8000/Code/profiler-visualizer.html" << endl;
     cout << "2. http://localhost:8000/Code/detailed-profiler-visualizer.html" << endl;
