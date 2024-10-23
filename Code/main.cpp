@@ -11,7 +11,6 @@ using namespace std;
 Profiler* profiler = nullptr;
 
 // Function to start Python HTTP server
-// Function to start Python HTTP server with better error handling
 void startServer() {
     // First kill any existing Python servers
     #ifdef _WIN32
@@ -123,14 +122,11 @@ int main(int argc, char** argv) {
     profiler = Profiler::getInstance();
     RunTest();
     profiler->storeDetailedStatsbySectionCSV("Data/detailedStats.csv");
-   //system("python ./Code/detailedStatsVisual.py");
     profiler->calculateStats();
     profiler->printStats();
     profiler->printStatsToCSV("Data/profilerStatsCSV.csv");
-//     //system("python ./Code/profilerStatsVisual.py");
 
      profiler->printStatstoJSON("Data/profilerStatsJSON.json");
-//     // profiler->printStatsToXML("Data/profilerStatsXML.xml");
     // Open the visualizer in the default browser
      cout << "Starting local server..." << endl;
     startServer();
@@ -146,7 +142,7 @@ int main(int argc, char** argv) {
     cin.get();
     
     // Cleanup
-   cleanupServer();
+    cleanupServer();
 
 
     delete profiler;
